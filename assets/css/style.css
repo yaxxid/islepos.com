@@ -49,8 +49,15 @@ nav {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     transition: transform 0.2s;
+}
+
+.site-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 8px; /* optional, to clean up edges */
 }
 
 .logo-mark:hover {

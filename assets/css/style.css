@@ -376,7 +376,7 @@ footer .logo-mark {
         grid-template-columns: 1fr; 
         text-align: center; 
         gap: 3rem; 
-        padding: 60px 0;
+        padding: 100px 0 60px 0; /* Extra space on top for mobile detail pages */
     }
     .page-header h1 { 
         text-align: center; 

@@ -281,7 +281,15 @@ nav {
     color: var(--accent);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+}
+
+.cta-btn i {
+    transition: transform 0.3s ease;
+}
+
+.cta-btn:hover i {
+    transform: translateX(4px);
 }
 
 /* Detail Sections (Formerly Page Header) */
@@ -337,6 +345,7 @@ nav {
 .cta-btn {
     display: inline-flex;
     align-items: center;
+    gap: 12px;
     padding: 16px 32px;
     background: var(--accent);
     color: white;

@@ -1,0 +1,7 @@
+/*
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Clear-Site-Data: "cache", "storage"
+
+# Still allow caching for assets (images, css) if needed, 
+# but the user requested these headers which usually imply a full clear/no-cache for the site.
+# If they want specific exclusions, they can specify.

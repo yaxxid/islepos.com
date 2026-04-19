@@ -7,14 +7,14 @@
     
     <!-- Primary Meta Tags -->
     <meta name="title" content="IslePOS | Smart Solutions for Modern Commerce">
-    <meta name="description" content="Empowering your business with seamless point-of-sale and retail management tools. Explore IslePOS, IsleSME, and more.">
+    <meta name="description" content="Empowering your business with seamless point-of-sale and retail management tools. Explore IslePOS, IsleRetail, and more.">
     <link rel="canonical" href="https://islepos.com/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://islepos.com/">
     <meta property="og:title" content="IslePOS | Smart Solutions for Modern Commerce">
-    <meta property="og:description" content="Empowering your business with seamless point-of-sale and retail management tools. Explore IslePOS, IsleSME, and more.">
+    <meta property="og:description" content="Empowering your business with seamless point-of-sale and retail management tools. Explore IslePOS, IsleRetail, and more.">
     <meta property="og:image" content="assets/images/islepos_hero.png">
     
     <!-- Fonts and Icons -->
@@ -25,6 +25,36 @@
     
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Cache Control: Force no-cache and clear storage -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        // Aggressively clear all caches and storage to ensure "no sessions" are cached
+        (function() {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            // Clear storage
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Unregister service workers
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    registrations.forEach(reg => reg.unregister());
+                });
+            }
+            
+            // Clear cookies (optional but thorough)
+            document.cookie.split(";").forEach(function(c) { 
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+            });
+        })();
+    </script>
 </head>
 <body class="home-page">
 
@@ -45,9 +75,30 @@
     <section class="hero-section">
         <img src="assets/images/hero-bg.png" alt="" class="hero-bg">
         <div class="container hero-content">
-            <h1>Smart Solutions for Modern Commerce.</h1>
+            <h1>Smart Solutions for <br><span class="gradient-text">Modern Commerce.</span></h1>
             <p class="subtitle">Empowering business growth with tailored point-of-sale systems, flawless inventory management, and intuitive mobile solutions.</p>
-            <a href="#suite" class="cta-btn">Explore Our Suite <i class="fa-solid fa-chevron-down" ></i></a>
+            <div class="hero-btns">
+                <a href="#suite" class="cta-btn">Explore Our Suite <i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Enterprises</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10M+</span>
+                    <span class="stat-label">Transactions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Uptime</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -65,11 +116,11 @@
                     <span class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
                 
-                <!-- IsleSME -->
-                <a href="/islesme.html" class="card">
+                <!-- IsleRetail -->
+                <a href="/isleretail.html" class="card">
                     <div class="icon-box"><i class="fa-solid fa-leaf"></i></div>
-                    <h3>IsleSME</h3>
-                    <p>Lightweight and lightning-fast commerce tools built specifically for growing small and medium businesses.</p>
+                    <h3>IsleRetail</h3>
+                    <p>Lightweight and lightning-fast commerce tools built specifically for growing retail businesses.</p>
                     <span class="learn-more">Learn More <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
 
@@ -128,5 +179,44 @@
         </div>
     </footer>
 
+    <script>
+        // Modern UI interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('nav');
+            
+            // Handle navigation scroll state
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Intersection Observer for reveal animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Apply reveal to sections
+            document.querySelectorAll('.card, .section-title, .section-tag').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -315,6 +315,17 @@ nav.scrolled {
     border-color: rgba(59, 130, 246, 0.2);
 }
 
+.card.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(0.5);
+    cursor: default;
+}
+
+.card.disabled .learn-more {
+    display: none;
+}
+
 .icon-box {
     width: 64px;
     height: 64px;
